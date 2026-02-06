@@ -81,8 +81,10 @@ func MigrateOAuthModelAlias(configFile string) (bool, error) {
 		return migrateFromOldField(configFile, &root, rootMap, oldIdx)
 	}
 
-	// Neither field exists - add default antigravity config
-	return addDefaultAntigravityConfig(configFile, &root, rootMap)
+	// Neither field exists - skip adding default config to allow clean configs  
+// Users can manually add oauth-model-alias if needed  
+return false, nil  
+
 }
 
 // migrateFromOldField converts oauth-model-mappings to oauth-model-alias
